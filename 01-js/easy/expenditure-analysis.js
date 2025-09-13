@@ -14,7 +14,25 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+    const myMap = new Map();
+
+  for(let i = 0 ; i < transactions.length; i++){
+    if(myMap.has(transactions[i].category)){
+      myMap.set(transactions[i].category, myMap.get(transactions[i].category) + transactions[i].price)
+    }
+    else{
+      myMap.set(transactions[i].category, transactions[i].price);
+    }
+  }
+  console.log("ouput : ", myMap)
+
+ const result = Array.from(myMap, ([category, totalSpent]) => ({
+  category, totalSpent
+ }))
+ 
+ console.log("result : ", result)
+
+  return result;
 }
 
 module.exports = calculateTotalSpentByCategory;
